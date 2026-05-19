@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mi La — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: oklch(0.985 0.005 85);
+    --paper-2: oklch(0.96 0.008 80);
+    --ink: oklch(0.18 0.012 60);
+    --ink-2: oklch(0.38 0.012 60);
+    --ink-3: oklch(0.58 0.010 60);
+    --rule: oklch(0.86 0.010 70);
+    --accent: oklch(0.55 0.13 45);
+    --accent-soft: oklch(0.92 0.04 45);
+    --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background: oklch(0.92 0.008 70); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body{
+    min-height:100vh;
+    padding: 40px 24px 80px;
+    display:flex;
+    justify-content:center;
+  }
+
+  .page{
+    width: 100%;
+    max-width: 880px;
+    background: var(--paper);
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,.18), 0 1px 0 rgba(0,0,0,.04);
+    padding: 56px 56px 48px;
+    position: relative;
+  }
+  .page::before{
+    content:"";
+    position:absolute; inset: 0;
+    border: 1px solid oklch(0.88 0.010 70);
+    pointer-events:none;
+  }
+
+  /* ===== Header ===== */
+  header.top{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .name-block .eyebrow{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow .dot{
+    width:6px;height:6px;border-radius:50%;
+    background: var(--accent);
+    display:inline-block;
+    box-shadow: 0 0 0 3px oklch(0.55 0.13 45 / .15);
+  }
+  h1.name{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 72px;
+    line-height: .95;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+  h1.name a{
+    color: inherit; text-decoration:none;
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    background-position: 0 88%;
+    transition: background-size .35s ease, color .25s ease;
+    padding-bottom: 2px;
+  }
+  h1.name a:hover{
+    background-size: 100% 1px;
+    color: var(--accent);
+  }
+  h1.name a .arrow{
+    font-family: var(--sans);
+    font-size: 22px;
+    display:inline-block;
+    transform: translate(-6px,-22px) rotate(-12deg);
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity .25s ease, transform .35s ease;
+  }
+  h1.name a:hover .arrow{
+    opacity: 1;
+    transform: translate(-2px,-26px) rotate(0deg);
+  }
+  .role{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-2);
+    margin-top: 6px;
+  }
+  .meta{
+    text-align:right;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    line-height: 1.6;
+    letter-spacing: .04em;
+  }
+  .meta .yrs{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44px;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    display:block;
+    margin-bottom: 4px;
+  }
+  .meta .yrs sup{
+    font-size: 14px;
+    vertical-align: top;
+    color: var(--accent);
+    font-style: normal;
+    font-family: var(--mono);
+    margin-left: 2px;
+  }
+
+  /* ===== Body grid ===== */
+  .body{
+    display: grid;
+    grid-template-columns: 1fr 1.9fr;
+    gap: 40px;
+    padding-top: 28px;
+  }
+
+  /* ===== Section labels ===== */
+  h2.section{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 14px;
+    display:flex; align-items:center; gap: 10px;
+  }
+  h2.section::after{
+    content:"";
+    flex:1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ===== Sidebar ===== */
+  aside .group + .group{ margin-top: 28px; }
+  .summary{
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.35;
+    color: var(--ink);
+    margin: 0;
+  }
+  .summary em{ color: var(--accent); font-style: italic; }
+
+  .contact{
+    list-style:none; padding:0; margin:0;
+    display:flex; flex-direction:column; gap: 8px;
+    font-size: 13px;
+  }
+  .contact li{
+    display:flex; align-items:flex-start; gap: 10px;
+    color: var(--ink-2);
+  }
+  .contact .lbl{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    min-width: 52px;
+    padding-top: 2px;
+  }
+  .contact a{ color: var(--ink); text-decoration:none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .contact a:hover{ border-bottom-color: var(--accent); }
+
+  .edu-item{ margin-bottom: 14px; }
+  .edu-item:last-child{ margin-bottom:0; }
+  .edu-when{
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .edu-what{
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .edu-where{
+    font-size: 12px;
+    color: var(--ink-2);
+    margin-top: 2px;
+  }
+
+  /* ===== Skills ===== */
+  .skill-row{ margin-bottom: 12px; }
+  .skill-row:last-child{ margin-bottom: 0; }
+  .skill-cat{
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap: 5px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-2);
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: .01em;
+  }
+
+  /* AI tools — same chip style, subtle accent */
+  .skill-row.ai .skill-cat{
+    color: var(--accent);
+    display:flex; align-items:center; gap: 6px;
+  }
+  .skill-row.ai .skill-cat::after{
+    content:"✦";
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+  .chip.ai{
+    color: var(--accent);
+    border-color: oklch(0.55 0.13 45 / 0.45);
+    background: oklch(0.55 0.13 45 / 0.06);
+  }
+
+  /* ===== Experience ===== */
+  .job{
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .job:last-child{ border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .job-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .job-head > div:first-child{ flex: 1 1 auto; min-width: 0; }
+  .job-head > .job-when{ flex: 0 0 auto; }
+  .job-title{
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.18;
+    color: var(--ink);
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .job-co{
+    font-size: 13px;
+    color: var(--ink-2);
+    display:flex; align-items:center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .job-co strong{ color: var(--ink); font-weight: 500; }
+  .job-co .sep{ color: var(--ink-3); }
+  .job-when{
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .10em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 6px;
+  }
+  .job ul.bullets{
+    list-style:none; padding:0; margin: 8px 0 10px;
+    display:flex; flex-direction:column; gap: 6px;
+  }
+  .job ul.bullets li{
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    padding-left: 16px;
+    position:relative;
+  }
+  .job ul.bullets li::before{
+    content:"";
+    position:absolute; left: 0; top: 10px;
+    width: 8px; height: 1px;
+    background: var(--accent);
+  }
+  .stack{
+    display:flex; flex-wrap:wrap; gap: 5px;
+    margin-top: 8px;
+  }
+  .stack .chip{ font-size: 10px; padding: 2px 7px; }
+  .stack-lbl{
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-right: 6px;
+    align-self: center;
+  }
+
+  /* ===== Footer ===== */
+  footer.foot{
+    margin-top: 36px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  footer.foot a{ color: var(--ink-2); text-decoration:none; }
+  footer.foot a:hover{ color: var(--accent); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 720px){
+    body{ padding: 16px; }
+    .page{ padding: 28px 24px; }
+    h1.name{ font-size: 48px; }
+    .meta .yrs{ font-size: 32px; }
+    header.top{ flex-direction:column; align-items:flex-start; gap:16px;}
+    .meta{ text-align:left; }
+    .body{ grid-template-columns: 1fr; gap: 28px; }
+    .job-head{ flex-direction:column; }
+    .job-when{ text-align:left; padding-top: 0; }
+  }
+
+  /* ===== Print ===== */
+  @media print {
+    @page { size: A4; margin: 14mm; }
+    html,body{ background: white; }
+    body{ padding: 0; display:block; }
+    .page{ box-shadow:none; padding: 0; max-width: none; }
+    .page::before{ display:none; }
+    h1.name a .arrow{ display:none; }
+    a{ color: inherit !important; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <div class="name-block">
+        <div class="eyebrow"><span class="dot"></span> Mi La — Software Engineer · Based in Ho Chi Minh City</div>
+        <h1 class="name"><a href="https://mila1207.github.io/mila-resume/" target="_blank" rel="noopener" title="Open landing page">Mi La<span class="arrow">↗</span></a></h1>
+        <div class="role">Full-stack engineer building reliable backup &amp; fintech systems.</div>
+      </div>
+      <div class="meta">
+        <span class="yrs">8<sup>+</sup></span>
+        years of<br>shipping software<br>
+        <span style="display:inline-block;margin-top:8px;">Java · Spring · ExtJS · D3</span>
+      </div>
+    </header>
+
+    <div class="body">
+
+      <!-- ============ SIDEBAR ============ -->
+      <aside>
+        <section class="group">
+          <h2 class="section">Summary</h2>
+          <p class="summary">Software engineer with <em>8+ years</em> shipping production systems across fintech and data-protection. I enjoy turning messy requirements into clean, logical solutions users can trust.</p>
+        </section>
+
+        <section class="group">
+          <h2 class="section">Contact</h2>
+          <ul class="contact">
+            <li><span class="lbl">Email</span><a href="mailto:emilamila43@gmail.com">emilamila43@gmail.com</a></li>
+            <li><span class="lbl">Linked</span><a href="#">linkedin.com/in/mila</a></li>
+            <li><span class="lbl">Phone</span><span>+84 333 ××× 208</span></li>
+            <li><span class="lbl">Place</span><span>Duong Ba Trac, Rach Ong<br>District 8, Ho Chi Minh City</span></li>
+          </ul>
+        </section>
+
+        <section class="group">
+          <h2 class="section">Education</h2>
+          <div class="edu-item">
+            <div class="edu-when">2021 — 2022</div>
+            <div class="edu-what">Google UX Design Certificate</div>
+            <div class="edu-where">Coursera</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-when">2013 — 2016</div>
+            <div class="edu-what">B.Sc. Information Technology</div>
+            <div class="edu-where">Asia Pacific University (Malaysia)<br>Dual-degree eligible — Staffordshire UK · CGPA 3.48 / 4.0</div>
+          </div>
+        </section>
+
+        <section class="group">
+          <h2 class="section">Stack</h2>
+          <div class="skill-row">
+            <div class="skill-cat">Backend</div>
+            <div class="chips">
+              <span class="chip">Java 8</span>
+              <span class="chip">Spring MVC</span>
+              <span class="chip">Spring Boot</span>
+              <span class="chip">Spring Batch</span>
+              <span class="chip">Spring Security</span>
+              <span class="chip">REST</span>
+              <span class="chip">JWT</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-cat">Frontend</div>
+            <div class="chips">
+              <span class="chip">ExtJS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">CSS</span>
+              <span class="chip">D3.js</span>
+              <span class="chip">Leaflet</span>
+              <span class="chip">OpenStreetMap</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-cat">Data</div>
+            <div class="chips">
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">DB2</span>
+              <span class="chip">H2</span>
+              <span class="chip">JSON / XML / WSDL</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-cat">Ways of working</div>
+            <div class="chips">
+              <span class="chip">Scrum</span>
+              <span class="chip">Jira</span>
+              <span class="chip">Postman</span>
+              <span class="chip">Swagger</span>
+              <span class="chip">Figma</span>
+              <span class="chip">Adobe XD</span>
+            </div>
+          </div>
+
+          <div class="skill-row ai">
+            <div class="skill-cat">AI-assisted</div>
+            <div class="chips">
+              <span class="chip ai">Copilot</span>
+              <span class="chip ai">Cursor</span>
+              <span class="chip ai">Claude</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- ============ MAIN ============ -->
+      <section>
+        <h2 class="section">Experience</h2>
+
+        <article class="job">
+          <div class="job-head">
+            <div>
+              <h3 class="job-title">Software Engineer</h3>
+              <div class="job-co"><strong>NAKIVO Inc.</strong><span class="sep">·</span>Vietnam<span class="sep">·</span>Full-stack</div>
+            </div>
+            <div class="job-when">2021 — Present</div>
+          </div>
+          <ul class="bullets">
+            <li>Full-stack development on a desktop data-protection product for VMware virtual servers.</li>
+            <li>Designed and shipped new features end-to-end, plus bug fixes and ongoing system maintenance.</li>
+            <li>Integrated <strong style="color:var(--ink)">D3.js</strong> to power advanced visualisations and analytics dashboards.</li>
+            <li>Adopted Copilot + Cursor into my daily loop to ship features faster without sacrificing review quality.</li>
+          </ul>
+          <div class="stack">
+            <span class="stack-lbl">Stack</span>
+            <span class="chip">Java 8</span>
+            <span class="chip">Spring MVC</span>
+            <span class="chip">Façade pattern</span>
+            <span class="chip">H2</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">ExtJS</span>
+            <span class="chip">D3</span>
+            <span class="chip">Leaflet</span>
+            <span class="chip">SVN</span>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-head">
+            <div>
+              <h3 class="job-title">Intermediate Analyst — Java Development</h3>
+              <div class="job-co"><strong>Sun Life Vietnam</strong><span class="sep">·</span>Vietnam</div>
+            </div>
+            <div class="job-when">2020 — 2021</div>
+          </div>
+          <ul class="bullets">
+            <li>Owned L1/L2 production support, keeping policy-admin systems stable for downstream operations.</li>
+            <li>Authored SQL queries and Jasper reports that backed accurate contract and reporting workflows.</li>
+            <li>Mentored a junior team member on reporting and data tasks; led the small reporting squad.</li>
+          </ul>
+          <div class="stack">
+            <span class="stack-lbl">Stack</span>
+            <span class="chip">Jasper Reports</span>
+            <span class="chip">DB2</span>
+            <span class="chip">Git</span>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-head">
+            <div>
+              <h3 class="job-title">Back-end Developer — Mobile Banking</h3>
+              <div class="job-co"><strong>Hong Leong Bank</strong><span class="sep">·</span>Malaysia<span class="sep">·</span>Fintech</div>
+            </div>
+            <div class="job-when">2019 — 2020</div>
+          </div>
+          <ul class="bullets">
+            <li>Designed and developed RESTful APIs powering mobile-banking services.</li>
+            <li>Converted legacy <code style="font-family:var(--mono);font-size:12px;background:var(--paper-2);padding:1px 5px;border-radius:3px;">.wsdl</code> contracts into JSON for modern integration.</li>
+            <li>Maintained Swagger docs and coordinated closely with frontend teams to unblock releases.</li>
+          </ul>
+          <div class="stack">
+            <span class="stack-lbl">Stack</span>
+            <span class="chip">Java 8</span>
+            <span class="chip">Spring Boot</span>
+            <span class="chip">Spring Security</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">JWT</span>
+            <span class="chip">Swagger</span>
+            <span class="chip">Docker</span>
+            <span class="chip">GitLab</span>
+          </div>
+        </article>
+
+        <article class="job">
+          <div class="job-head">
+            <div>
+              <h3 class="job-title">Java Web Developer — Internet Banking</h3>
+              <div class="job-co"><strong>Cyber Village Sdn Bhd</strong><span class="sep">·</span>Malaysia<span class="sep">·</span>Fintech</div>
+            </div>
+            <div class="job-when">2017 — 2019</div>
+          </div>
+          <ul class="bullets">
+            <li>Developed web services, batch processes, and banking reports using BIRT.</li>
+            <li>Deployed application configurations across SIT/UAT environments for client acceptance.</li>
+            <li>Provided L3 production support and resolved escalated defects.</li>
+          </ul>
+          <div class="stack">
+            <span class="stack-lbl">Stack</span>
+            <span class="chip">Spring MVC</span>
+            <span class="chip">Spring Batch</span>
+            <span class="chip">BIRT</span>
+            <span class="chip">DB2</span>
+            <span class="chip">REST</span>
+            <span class="chip">JSP</span>
+            <span class="chip">GitLab</span>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <footer class="foot">
+      <div>© Mi La · 2025</div>
+      <div><a href="https://mila1207.github.io/mila-resume/" target="_blank" rel="noopener">mila1207.github.io/mila-resume →</a></div>
+    </footer>
+  </main>
+</body>
+</html>
