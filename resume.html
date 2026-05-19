@@ -343,16 +343,105 @@
   footer.foot a:hover{ color: var(--accent); }
 
   /* ===== Responsive ===== */
-  @media (max-width: 720px){
-    body{ padding: 16px; }
-    .page{ padding: 28px 24px; }
-    h1.name{ font-size: 48px; }
-    .meta .yrs{ font-size: 32px; }
-    header.top{ flex-direction:column; align-items:flex-start; gap:16px;}
-    .meta{ text-align:left; }
-    .body{ grid-template-columns: 1fr; gap: 28px; }
-    .job-head{ flex-direction:column; }
-    .job-when{ text-align:left; padding-top: 0; }
+
+  /* Tablet — collapse to single column, soften paper margins */
+  @media (max-width: 900px){
+    body{ padding: 24px 16px 56px; }
+    .page{ padding: 40px 36px 36px; }
+    .body{ grid-template-columns: 1fr; gap: 32px; }
+    h1.name{ font-size: 60px; }
+    .meta .yrs{ font-size: 38px; }
+  }
+
+  /* Phone */
+  @media (max-width: 600px){
+    body{ padding: 12px 10px 40px; }
+    .page{
+      padding: 24px 20px 28px;
+      box-shadow: 0 12px 30px -16px rgba(0,0,0,.18);
+    }
+
+    /* Header stacks; year-block aligns left, full width */
+    header.top{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 16px;
+    }
+    .name-block .eyebrow{
+      flex-wrap: wrap;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+    h1.name{
+      font-size: clamp(40px, 12vw, 52px);
+      line-height: .98;
+    }
+    h1.name a .arrow{ display: none; }  /* novelty — kill on touch */
+    .role{ font-size: 18px; }
+
+    .meta{
+      text-align: left;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      line-height: 1.4;
+    }
+    .meta .yrs{
+      font-size: 30px;
+      display: inline-block;
+      margin: 0;
+    }
+    .meta .yrs sup{ font-size: 11px; }
+
+    /* Body */
+    .body{ grid-template-columns: 1fr; gap: 28px; padding-top: 22px; }
+
+    .summary{ font-size: 17px; }
+
+    .contact li{ flex-wrap: wrap; }
+    .contact .lbl{ min-width: 48px; }
+
+    /* Job cards */
+    .job{ padding-bottom: 18px; margin-bottom: 18px; }
+    .job-head{
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .job-title{ font-size: 19px; }
+    .job-co{ font-size: 12.5px; }
+    .job-when{
+      text-align: left;
+      padding-top: 0;
+      font-size: 10px;
+      order: -1;          /* dates above title on mobile */
+    }
+    .job ul.bullets li{ font-size: 13px; line-height: 1.55; }
+
+    .stack{ gap: 4px; }
+    .stack-lbl{ width: 100%; margin: 0 0 2px; }
+
+    .chip{ font-size: 10.5px; padding: 3px 7px; }
+
+    /* Footer */
+    footer.foot{
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+      margin-top: 28px;
+      text-align: left;
+    }
+  }
+
+  /* Very small phones (≤ 360px) — last-mile fixes */
+  @media (max-width: 360px){
+    .page{ padding: 20px 16px 24px; }
+    h1.name{ font-size: 36px; }
+    .role{ font-size: 16px; }
+    .meta .yrs{ font-size: 26px; }
+    .job-title{ font-size: 18px; }
   }
 
   /* ===== Print ===== */
@@ -394,7 +483,7 @@
         <section class="group">
           <h2 class="section">Contact</h2>
           <ul class="contact">
-            <li><span class="lbl">Email</span><a href="mailto:emilamila43@gmail.com">emilamila43@gmail.com</a></li>
+            <li><span class="lbl">Email</span><a href="/cdn-cgi/l/email-protection#06636b6f6a676b6f6a67323546616b676f6a2865696b"><span class="__cf_email__" data-cfemail="0b6e6662676a6662676a3f384b6c666a626725686466">[email&#160;protected]</span></a></li>
             <li><span class="lbl">Linked</span><a href="#">linkedin.com/in/mila</a></li>
             <li><span class="lbl">Phone</span><span>+84 333 ××× 208</span></li>
             <li><span class="lbl">Place</span><span>Duong Ba Trac, Rach Ong<br>District 8, Ho Chi Minh City</span></li>
@@ -583,5 +672,5 @@
       <div><a href="https://mila1207.github.io/mila-resume/" target="_blank" rel="noopener">mila1207.github.io/mila-resume →</a></div>
     </footer>
   </main>
-</body>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
