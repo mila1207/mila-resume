@@ -431,13 +431,101 @@
     text-transform: uppercase;
   }
 
-  /* Responsive */
-  @media (max-width: 800px){
-    .about-grid, .block-head{ grid-template-columns: 1fr; gap: 24px; }
+  /* ============ Responsive ============ */
+
+  /* Tablet — collapse 2-col grids, tighten paddings */
+  @media (max-width: 900px){
+    nav.top .inner{ padding: 12px 22px; }
+    nav.top .links{ gap: 16px; }
+    nav.top .status{ display:none; }      /* save horizontal room */
+
+    section.hero{ padding: 56px 22px 44px; }
+    section.block{ padding: 60px 22px; }
+    section.contact{ padding: 72px 22px 44px; }
+    footer.bot{ padding: 20px 22px; }
+
+    .about-grid,
+    .block-head{ grid-template-columns: 1fr; gap: 22px; }
     .ai-grid{ grid-template-columns: 1fr; }
-    .xp-row{ grid-template-columns: 60px 1fr; }
-    .xp-tag{ grid-column: 1 / -1; text-align:left; }
-    nav.top .links{ gap: 14px; }
+    .xp-row{ grid-template-columns: 64px 1fr; }
+    .xp-tag{ grid-column: 1 / -1; text-align:left; padding-top: 4px; }
+  }
+
+  /* Phone — single column, smaller type, fewer nav links */
+  @media (max-width: 600px){
+    nav.top .inner{
+      padding: 10px 16px;
+      gap: 10px;
+    }
+    nav.top .links{
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav.top .links a{ padding: 6px 0; }   /* bigger tap target */
+    nav.top .brand{ font-size: 15px; }
+
+    section.hero{ padding: 40px 16px 32px; }
+    section.block{ padding: 48px 16px; }
+    section.contact{ padding: 56px 16px 36px; }
+    footer.bot{
+      padding: 18px 16px;
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .eyebrow{ margin-bottom: 20px; gap: 10px; }
+    .eyebrow .line{ flex-basis: 36px; }
+
+    h1.hero-name{ font-size: clamp(56px, 18vw, 92px); }
+    .lede{ margin-top: 22px; font-size: clamp(19px, 5.2vw, 22px); }
+
+    .meta-row{ margin-top: 28px; gap: 20px; }
+    .meta-row .item{ flex: 1 1 calc(50% - 20px); }
+
+    .cta-row{ margin-top: 32px; }
+    .btn{
+      flex: 1 1 auto;
+      justify-content: center;
+      padding: 14px 18px;            /* 44px+ tap target */
+    }
+
+    .ticker-track{ gap: 36px; font-size: 12px; }
+    .ticker-track span{ gap: 36px; }
+
+    .block-head{ margin-bottom: 28px; }
+    .block-head h2{ font-size: clamp(28px, 7vw, 36px); }
+
+    .about-body p{ font-size: 18px; line-height: 1.45; }
+
+    .ai-card{ padding: 26px 22px; }
+    .ai-card .num{ margin-bottom: 20px; }
+    .ai-card h3{ font-size: 28px; }
+
+    .xp-row{
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 18px 0;
+    }
+    .xp-row:hover{ padding-left: 0; }     /* drop hover shift on touch */
+    .xp-year{ font-size: 11px; }
+    .xp-title{ font-size: 22px; }
+    .xp-title .co{ font-size: 12px; margin-top: 6px; }
+
+    section.contact h2{ font-size: clamp(40px, 11vw, 60px); margin-bottom: 28px; }
+    section.contact a.mail{ font-size: clamp(20px, 5.5vw, 26px); word-break: break-all; }
+    .socials{
+      margin-top: 28px;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+  }
+
+  /* Disable marquee for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation: none; }
   }
 </style>
 </head>
@@ -471,7 +559,7 @@
     </div>
 
     <div class="cta-row">
-      <a class="btn" href="mailto:emilamila43@gmail.com">Get in touch <span>→</span></a>
+      <a class="btn" href="/cdn-cgi/l/email-protection#20454d494c414d494c41141360474d41494c0e434f4d">Get in touch <span>→</span></a>
       <a class="btn ghost" href="resume.html">View résumé</a>
     </div>
   </section>
@@ -586,7 +674,7 @@
   <section class="contact" id="contact">
     <div class="small">04 — Say hi</div>
     <h2>Let's build something <em>worth trusting.</em></h2>
-    <a class="mail" href="mailto:emilamila43@gmail.com">emilamila43@gmail.com</a>
+    <a class="mail" href="/cdn-cgi/l/email-protection#4b2e2622272a2622272a7f780b2c262a222765282426"><span class="__cf_email__" data-cfemail="9cf9f1f5f0fdf1f5f0fda8afdcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a>
     <div class="socials">
       <a href="#">LinkedIn ↗</a>
       <a href="#">GitHub ↗</a>
@@ -600,5 +688,5 @@
   <span>HCMC ⇄ KL</span>
 </footer>
 
-</body>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
